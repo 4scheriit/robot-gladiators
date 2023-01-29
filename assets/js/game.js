@@ -19,7 +19,7 @@ setTimeout(function()
       name = prompt("What is your robot's name?");
     }
 
-    console.log("Your robot's name is " + name);
+    console.log(`Your robot's name is ${name}`);
     return name;
   };
 
@@ -167,7 +167,7 @@ setTimeout(function()
   // fight function (now with parameter for enemy's name)
   const fight = function(enemy)
   {
-    alert("Player Info:\nHealth: " + playerInfo.health + "\nAttack: " + playerInfo.attack + "\nGold: " + playerInfo.money + "\n\nEnemy Info:\nName: " + enemy.name + "\nHealth: " + enemy.health + "\nWeightclass: " + enemy.weight);
+    alert(`Player Info:\nHealth: ${playerInfo.health} \nAttack: ${playerInfo.attack} \nGold: ${playerInfo.money} \n\nEnemy Info:\nName: ${enemy.name} \nHealth: ${enemy.health} \nWeightclass: ${enemy.weight}`);
 
     while (playerInfo.health > 0 && enemy.health > 0) 
     {
@@ -181,14 +181,7 @@ setTimeout(function()
         if (playerInfo.attack > 500)
         {
           window.alert("You stand tall, your gears whirring to life as you focus all of your energy into your fist. A bright glow emitts from your clenched hand, sparks flying as your gears accelerate past their limits as you prepare to strike. With a fierce yell, you launch yourself at your enemy, punching them with all your might.");
-          window.alert(enemy.name + " was sent flying");
-          break;
-        }
-        else if (playerInfo.name === "Pedro")
-        {
-          window.alert("You sacrifice yourself for your friends!");
-          window.alert(enemy.name + " was blown up");
-          playerInfo.health = 0;
+          window.alert(`${enemy.name} was sent flying`);
           break;
         }
         else
@@ -199,20 +192,16 @@ setTimeout(function()
           if (Math.random() <= 0.1)
           {
             damagePlayer *= 2;
-            window.alert(playerInfo.name + " hits a critical strike!!!")
+            window.alert(`${playerInfo.name} hits a critical strike!!!`)
           }
 
           // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
           enemy.health = Math.max(0, enemy.health - damagePlayer);
 
-          console.log(
-            playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
-          );
-
           // check enemy's health
           if (enemy.health <= 0) 
           {
-            window.alert(enemy.name + ' has died!');
+            window.alert(`${enemy.name} has died!`);
 
             // award player money for winning
             playerInfo.money = playerInfo.money + 20;
@@ -222,7 +211,7 @@ setTimeout(function()
           } 
           else 
           {
-            window.alert(enemy.name + ' took ' + damagePlayer + ' damage! ' + enemy.name + ' still has ' + enemy.health + ' health left.');
+            window.alert(`${enemy.name} took ${damagePlayer} damage! ${enemy.name} still has ${enemy.health} health left.`);
           }
           
           let damageEnemy = randomNumber(enemy.attack - 3, enemy.attack);
@@ -230,26 +219,22 @@ setTimeout(function()
           if (Math.random() <= 0.1)
           {
             damageEnemy *= 2;
-            window.alert(enemy.name + " hits a critical strike!!!")
+            window.alert(`${enemy.name} hits a critical strike!!!`)
           }
 
           // remove players's health by subtracting the amount set in the enemy.attack variable
           playerInfo.health = Math.max(0, playerInfo.health - damageEnemy);
 
-          console.log(
-            enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
-          );
-
           // check player's health
           if (playerInfo.health <= 0) 
           {
-            window.alert(playerInfo.name + ' has died!');
+            window.alert(`${playerInfo.name} has died!`);
             // leave while() loop if player is dead
             break;
           } 
           else 
           {
-            window.alert(playerInfo.name + ' took ' + damageEnemy + ' damage! ' + playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
+            window.alert(`${playerInfo.name} took ${damageEnemy} damage! ${playerInfo.name} still has ${playerInfo.health} health left.`);
           }
         }
       }
@@ -269,7 +254,7 @@ setTimeout(function()
       if (playerInfo.health > 0) 
       {
         // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
-        window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
+        window.alert(`Welcome to Robot Gladiators! Round ${(i + 1)}`);
 
         // pick new enemy to fight based on the index of the enemy.names array
         let pickedEnemyObj = enemyInfo[i];
@@ -280,7 +265,7 @@ setTimeout(function()
         // if player is still alive and we're not at the last enemy in the array
         if (playerInfo.health > 0 && i < enemyInfo.length - 1) 
         {
-          alert("Player Info:\nHealth: " + playerInfo.health + "/100" + "\nAttack: " + playerInfo.attack + "\nGold: " + playerInfo.money);
+          alert(`Player Info:\nHealth: ${playerInfo.health}/100 \nAttack: ${playerInfo.attack} \nGold: ${playerInfo.money}`);
           // ask if player wants to use the store before next round
           let storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
         
@@ -312,7 +297,7 @@ setTimeout(function()
     // if player is still alive, player wins!
     if (playerInfo.health > 0) 
     {
-      window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + '.');
+      window.alert(`Great job, you've survived the game! You now have a score of ${playerInfo.money}.`);
     } 
     else 
     {
