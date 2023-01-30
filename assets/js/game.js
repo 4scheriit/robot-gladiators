@@ -2,7 +2,11 @@
 setTimeout(function()
 {
   // function to generate a random numeric value
+<<<<<<< HEAD
   const randomNumber = (min, max) =>
+=======
+  const randomNumber = function(min, max) 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     const value = Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -10,7 +14,11 @@ setTimeout(function()
   };
 
   // function to set name
+<<<<<<< HEAD
   const getPlayerName = () =>
+=======
+  const getPlayerName = function() 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     let name = "";
 
@@ -110,11 +118,16 @@ setTimeout(function()
     }
   ];
 
+<<<<<<< HEAD
   const fightOrSkip = () => 
+=======
+  const fightOrSkip = function() 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     // ask player if they'd like to fight or skip using fightOrSkip function
     let promptFight = window.prompt('Would you like to FIGHT or SKIP [20 gold] this battle? Enter "FIGHT" or "SKIP" to choose.');
 
+<<<<<<< HEAD
     // check for different user input, make everything lowercase to eliminate case sensitive complications
     switch (true) 
     {
@@ -170,6 +183,73 @@ setTimeout(function()
       {
         if (playerInfo.attack > 500)
         {
+=======
+    // Conditional Recursive Function Call
+    if (promptFight === "" || promptFight === null) 
+    {
+      window.alert("You need to fill in the form! Please try again.");
+      return fightOrSkip();
+    }
+
+    // set the user input to be all lowercase
+    promptFight = promptFight.toLowerCase();
+
+    // if player picks "skip" confirm and then stop the loop
+    if (promptFight === "skip") 
+    {
+      // check if the player has enough money to skip, if not fight continues
+      if (playerInfo.money >= 20)
+      {
+        // confirm player wants to skip
+        const confirmSkip = window.confirm("Are you sure you'd like to skip this fight?");
+
+        // if yes (true), leave fight
+        if (confirmSkip) 
+        {
+          window.alert(playerInfo.name + " has decided to skip this fight. What a loser!");
+          // subtract money from playerMoney for skipping, but don't let them go into the negative
+          playerInfo.money = Math.max(0, playerInfo.money - 20);
+
+          // return true if player wants to leave
+          return true;
+        }
+      }
+      else 
+      {
+        window.alert("You don't have enough money! The fight goes on!");
+        return false;
+      }
+    }
+    // if player picks fight return false
+    else if (promptFight === "fight")
+    {
+      return false;
+    }
+    // catch all other user error cases and return to start of function
+    else
+    {
+        window.alert("Can you not spell?");
+        return fightOrSkip();
+    }
+  }
+
+  // fight function (now with parameter for enemy's name)
+  const fight = function(enemy)
+  {
+    alert(`Player Info:\nHealth: ${playerInfo.health} \nAttack: ${playerInfo.attack} \nGold: ${playerInfo.money} \n\nEnemy Info:\nName: ${enemy.name} \nHealth: ${enemy.health} \nWeightclass: ${enemy.weight}`);
+
+    while (playerInfo.health > 0 && enemy.health > 0) 
+    {
+      if (fightOrSkip()) 
+      {
+        // if true, leave fight by breaking loop
+        break;
+      }
+      else
+      {
+        if (playerInfo.attack > 500)
+        {
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
           window.alert("You stand tall, your gears whirring to life as you focus all of your energy into your fist. A bright glow emitts from your clenched hand, sparks flying as your gears accelerate past their limits as you prepare to strike. With a fierce yell, you launch yourself at your enemy, punching them with all your might.");
           window.alert(`${enemy.name} was sent flying`);
           break;
@@ -232,7 +312,11 @@ setTimeout(function()
   };
 
   // function to start a new game
+<<<<<<< HEAD
   const startGame = () => 
+=======
+  const startGame = function() 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     // reset player stats
     playerInfo.reset();
@@ -280,7 +364,11 @@ setTimeout(function()
   };
 
   // function to end the entire game
+<<<<<<< HEAD
   const endGame = () =>
+=======
+  const endGame = function() 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     window.alert("The game has now ended. Let's see how you did!");
 
@@ -314,7 +402,11 @@ setTimeout(function()
   };
 
   // go to shop between battles function
+<<<<<<< HEAD
   const shop = () =>
+=======
+  const shop = function() 
+>>>>>>> 2afbbb5db1ec5c3cc29bdfc95203760c68c8d92d
   {
     // ask player what they'd like to do
     let shopOptionPrompt = window.prompt(
