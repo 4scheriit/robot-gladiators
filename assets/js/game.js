@@ -159,73 +159,68 @@ setTimeout(function()
   {
     alert(`Player Info:\nHealth: ${playerInfo.health} \nAttack: ${playerInfo.attack} \nGold: ${playerInfo.money} \n\nEnemy Info:\nName: ${enemy.name} \nHealth: ${enemy.health} \nWeightclass: ${enemy.weight}`);
 
+    // run function to check if player wants to skip the fight or keep fighting
+    if(fightOrSkip()) return;
+
     while (playerInfo.health > 0 && enemy.health > 0) 
     {
-      if (fightOrSkip()) 
+      if (playerInfo.attack > 500)
       {
-        // if true, leave fight by breaking loop
+        window.alert("You stand tall, your gears whirring to life as you focus all of your energy into your fist. A bright glow emitts from your clenched hand, sparks flying as your gears accelerate past their limits as you prepare to strike. With a fierce yell, you launch yourself at your enemy, punching them with all your might.");
+        window.alert(`${enemy.name} was sent flying`);
         break;
       }
       else
       {
-        if (playerInfo.attack > 500)
+        // generate random damage value based on player's attack power
+        let damagePlayer = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+
+        if (Math.random() <= 0.1)
         {
-          window.alert("You stand tall, your gears whirring to life as you focus all of your energy into your fist. A bright glow emitts from your clenched hand, sparks flying as your gears accelerate past their limits as you prepare to strike. With a fierce yell, you launch yourself at your enemy, punching them with all your might.");
-          window.alert(`${enemy.name} was sent flying`);
-          break;
+          damagePlayer *= 2;
+          window.alert(`${playerInfo.name} hits a critical strike!!!`)
         }
-        else
+
+        // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
+        enemy.health = Math.max(0, enemy.health - damagePlayer);
+
+        // check enemy's health
+        if (enemy.health <= 0) 
         {
-          // generate random damage value based on player's attack power
-          let damagePlayer = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+          window.alert(`${enemy.name} has died!`);
 
-          if (Math.random() <= 0.1)
-          {
-            damagePlayer *= 2;
-            window.alert(`${playerInfo.name} hits a critical strike!!!`)
-          }
+          // award player money for winning
+          playerInfo.money = playerInfo.money + 20;
 
-          // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
-          enemy.health = Math.max(0, enemy.health - damagePlayer);
+          // leave while() loop since enemy is dead
+          break;
+        } 
+        else 
+        {
+          window.alert(`${enemy.name} took ${damagePlayer} damage! ${enemy.name} still has ${enemy.health} health left.`);
+        }
+        
+        let damageEnemy = randomNumber(enemy.attack - 3, enemy.attack);
 
-          // check enemy's health
-          if (enemy.health <= 0) 
-          {
-            window.alert(`${enemy.name} has died!`);
+        if (Math.random() <= 0.1)
+        {
+          damageEnemy *= 2;
+          window.alert(`${enemy.name} hits a critical strike!!!`)
+        }
 
-            // award player money for winning
-            playerInfo.money = playerInfo.money + 20;
+        // remove players's health by subtracting the amount set in the enemy.attack variable
+        playerInfo.health = Math.max(0, playerInfo.health - damageEnemy);
 
-            // leave while() loop since enemy is dead
-            break;
-          } 
-          else 
-          {
-            window.alert(`${enemy.name} took ${damagePlayer} damage! ${enemy.name} still has ${enemy.health} health left.`);
-          }
-          
-          let damageEnemy = randomNumber(enemy.attack - 3, enemy.attack);
-
-          if (Math.random() <= 0.1)
-          {
-            damageEnemy *= 2;
-            window.alert(`${enemy.name} hits a critical strike!!!`)
-          }
-
-          // remove players's health by subtracting the amount set in the enemy.attack variable
-          playerInfo.health = Math.max(0, playerInfo.health - damageEnemy);
-
-          // check player's health
-          if (playerInfo.health <= 0) 
-          {
-            window.alert(`${playerInfo.name} has died!`);
-            // leave while() loop if player is dead
-            break;
-          } 
-          else 
-          {
-            window.alert(`${playerInfo.name} took ${damageEnemy} damage! ${playerInfo.name} still has ${playerInfo.health} health left.`);
-          }
+        // check player's health
+        if (playerInfo.health <= 0) 
+        {
+          window.alert(`${playerInfo.name} has died!`);
+          // leave while() loop if player is dead
+          break;
+        } 
+        else 
+        {
+          window.alert(`${playerInfo.name} took ${damageEnemy} damage! ${playerInfo.name} still has ${playerInfo.health} health left.`);
         }
       }
     }
