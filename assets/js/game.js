@@ -4,12 +4,14 @@ setTimeout(function()
   // function to generate a random numeric value
   const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
-  // function to set name
+  // function to set robot name
   const getPlayerName = () =>
   {
-    let name = "";
+    // obtain name for robot
+    let name = prompt("What is your robot's name?");
 
-    while (name === "" || name === null) 
+    // while the user hasnt input a name keep asking
+    while (!name) 
     {
       name = prompt("What is your robot's name?");
     }
@@ -78,32 +80,33 @@ setTimeout(function()
       attack: randomNumber(4, 8),
       health: 40,
       weight: "Lightweight",
-      resetHealth: function() 
-      {
-        this.health = 40;
-      }
     },
+
     {
       name: "Twin Cities",
       attack: randomNumber(8, 12),
       health: 70,
       weight: "Middleweight",
-      resetHealth: function() 
-      {
-        this.health = 70;
-      }
     },
+
     {
       name: "Zeus",
       attack: randomNumber(12, 18),
       health: 100,
       weight: "Heavyweight",
-      resetHealth: function() 
-      {
-        this.health = 100;
-      }
     }
   ];
+
+  const enemyDefaultHp = [40, 70, 100];
+
+  resetEnemyHealth = () =>
+  {
+    for (let i = 0; i < enemyInfo.length; i++)
+    {
+      enemyInfo[i].health = enemyDefaultHp[i];
+    }
+  };
+
 
   const fightOrSkip = () => 
   {
@@ -290,11 +293,9 @@ setTimeout(function()
     if (playAgainConfirm) 
     {
       // reset each enemies health before the next game
-      for (let i = 0; i < enemyInfo.length; i++) 
-      {
-        enemyInfo[i].resetHealth();
-      }
-
+      resetEnemyHealth();
+      
+      // start new game
       startGame();
     } 
     else 
