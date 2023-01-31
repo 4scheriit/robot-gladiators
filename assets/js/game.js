@@ -2,12 +2,7 @@
 setTimeout(function()
 {
   // function to generate a random numeric value
-  const randomNumber = (min, max) =>
-  {
-    const value = Math.floor(Math.random() * (max - min + 1) + min);
-
-    return value;
-  };
+  const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   // function to set name
   const getPlayerName = () =>
