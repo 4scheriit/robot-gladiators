@@ -97,7 +97,7 @@ setTimeout(function()
     }
   ];
 
-  resetEnemyHealth = () =>
+  const resetEnemyHealth = () =>
   {
     const enemyDefaultHp = [40, 70, 100];
     
