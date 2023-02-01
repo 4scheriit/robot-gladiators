@@ -97,10 +97,10 @@ setTimeout(function()
     }
   ];
 
-  const enemyDefaultHp = [40, 70, 100];
-
   resetEnemyHealth = () =>
   {
+    const enemyDefaultHp = [40, 70, 100];
+    
     for (let i = 0; i < enemyInfo.length; i++)
     {
       enemyInfo[i].health = enemyDefaultHp[i];
